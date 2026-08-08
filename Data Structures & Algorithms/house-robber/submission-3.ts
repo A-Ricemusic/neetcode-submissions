@@ -1,0 +1,17 @@
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @return {number}
+     */
+    rob(nums: number[]): number {
+        const dp: number[] = new Array(nums.length).fill(-1) 
+        const dfs = (i: number) => {
+            if (i >= nums.length) return 0;
+            if (dp[i] !== -1) return dp[i];
+            dp[i] = Math.max(dfs(i + 1), nums[i] + dfs(i + 2))
+            return dp[i]
+        }
+
+        return dfs(0)
+    }
+}
